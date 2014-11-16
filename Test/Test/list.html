@@ -1,0 +1,47 @@
+﻿<h1>Hello {{test}}</h1>
+
+
+<table class="table table-striped table-condensed table-hover">
+    <thead>
+    <th>No.</th>
+    <th>
+        <a ng-click="sort('FirstName')">FirstName</a>
+        <span ng-show="orderby=='FirstName' && desc==true">
+            <i class="glyphicon glyphicon-arrow-down"></i>
+        </span>
+        <span ng-show="orderby=='FirstName' && desc==false"><i class="glyphicon glyphicon-arrow-up"></i></span>
+    </th>
+    <th>
+        <a ng-click="sort('LastName')">LastName</a>
+        <span ng-show="orderby=='LastName' && desc==true">
+            <i class="glyphicon glyphicon-arrow-down"></i>
+        </span>
+        <span ng-show="orderby=='LastName' && desc==false"><i class="glyphicon glyphicon-arrow-up"></i></span>
+    </th>
+    <th>Gender</th>
+    <th>
+        <a href="#/add"><i class="glyphicon glyphicon-plus"</a>
+    </th>
+    <tbody>
+        <tr ng-repeat="c in customers" id="customer_{{c.ID}}">
+            <td>
+                {{c.ID}}
+            </td>
+            <td>
+                {{c.FirstName}}
+            </td>
+            <td>
+                {{c.LastName}}
+            </td>
+            <td>
+                {{c.Gender}}
+            </td>
+            <td>
+                <a href="#/edit/{{c.ID}}"><i class="glyphicon glyphicon-edit"></i></a>
+                <a ng-click="delete()"<i class="glyphicon glyphicon-remove-sign"></i></a>
+            </td>
+        </tr>
+    </tbody>
+
+    <!--<a ng-show="hasmore()" ng-click="showmore()">Show more</a>-->
+</table>
