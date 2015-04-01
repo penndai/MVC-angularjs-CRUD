@@ -8,7 +8,7 @@
     });
 
 customerApp.factory('CustomerService', function ($resource) {
-    return $resource('api/Customer/:customerid', { customerid: '@id' }, { update: {method:'PUT'}});
+    return $resource('api/Customer/:customerid', { customerid: '@ID' }, { update: {method:'PUT'}});
 });
 
 
@@ -23,14 +23,21 @@ var AddCtrl = function ($scope, $location, CustomerService) {
 
 var EditCtrl = function ($scope, $location, $routeParams, CustomerService) {
     $scope.action = "Edit";
+    console.log('id is :' + $routeParams.id);
     var updatedItem = CustomerService.get({ id: $routeParams.id });
     $scope.item = updatedItem;
 
     //non-GET "class" actions: Resource.action([parameters], postData, [success], [error])
-    $scope.save = function () {       
-        CustomerService.update({id:$routeParams.id},updatedItem, function () {            
+    $scope.save = function () {
+        console.log('id is :' + updatedItem.ID);
+        CustomerService.update(updatedItem, function () {
+            console.log('id is :' + updatedItem.ID);
             $location.path('/');
         });
+       
+        //CustomerService.update({id:$routeParams.id},updatedItem, function () {            
+        //    $location.path('/');
+        //});
     };
 };
 
